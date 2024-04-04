@@ -37,5 +37,15 @@ const styles = StyleSheet.create({
         borderTopColor: '#ccc',
         borderRightColor: '#333',
         borderBottomColor: '#333',        
+    },
+    opened: {
+        backgroundColor: '#999',
+        borderColor: '#777',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    label: {
+        fontWeight: 'bold',
+        fontSize: params.fontSize,
     }
 })
