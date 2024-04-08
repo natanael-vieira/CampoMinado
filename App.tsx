@@ -21,7 +21,7 @@ export default class App extends Component {
     const cols = params.getColumnsAmount()
     const rows = params.getRowsAmount()
     return {
-      board: createMinedBoard(rows, cols, this.minesAmount()),
+      board: createMinedBoard(rows, cols, this.minesAmount())
     }
   }
 
