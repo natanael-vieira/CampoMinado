@@ -8,7 +8,7 @@ export default class App extends Component {
 
   constructor(props: {}) {
     super(props)
-    this.state = this.createState 
+    this.state = this.createState() 
   }
 
   minesAmount = () => {
