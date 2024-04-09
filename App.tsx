@@ -9,7 +9,8 @@ import {
   hadExplosion, 
   wonGame, 
   showMines,
-  invertFlag
+  invertFlag,
+  flagsUsed
 } from './src/functions'
 
 export default class App extends Component {
