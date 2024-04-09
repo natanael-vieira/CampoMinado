@@ -46,19 +46,41 @@ const cloneBoard = board => {
 
 const getNeighbors = (board, row, column) => {
     const neighbors = []
-    const rows = [row - 1, row, row + 1]
-    const columns = [column - 1, column, column + 1]
+    const rows = [row - 1, row, row +1]
+    const columns = [column -1, column, column +1]
     rows.forEach(r => {
-        columns.forEach(c = {
+        columns.forEach(c => {
             const different = r !== row || c !== column
             const validRow = r >= 0 && r < board.length
-            const validColumn = c >= 0 && c < board[0].length
-            if (different && validRow && validColumn) {
-                neighbors.push(board[r]rc)
+            const ValidColumn = c >= column && c < board[0].length
+            if (different && validRow && ValidColumn) {
+            neighbors.push(board[r][c])
             }
         })
     })
     return neighbors
 }
+
+const safeNeighborhood = (board, row, column) => {
+    const safes = (result, neighbor) => result && !neighbor.mined
+    return getNeighbors(board, row, column).reduce(safes, true)
+}
+
+const openField = (board, row, column) => {
+    const field = board[row][column]
+    if (!field.opened) {
+        field.opened = true
+        if (field.mined) {
+            field.exploded = true
+        } else if (safeNeighborhood(board, row, column)) {
+            getNeighbors(board, row, column).forEach(n => openField(board, n.row, n.column))
+        } else {
+            const neighbor = getNeighbors(board, row, column)
+            field.nearMines = neighbor.filter(n => n.mined).length
+        }
+    }
+}
+
+
 
 export { createMinedBoard }
